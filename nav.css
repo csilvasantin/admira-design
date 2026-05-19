@@ -36,10 +36,12 @@
 .admira-nav.admira-nav-static {
   position: static;
   padding: 10px var(--admira-space-4);
-  background: linear-gradient(90deg, rgba(170, 136, 255, 0.10) 0%, rgba(80, 200, 255, 0.08) 50%, rgba(255, 216, 102, 0.06) 100%);
+  background:
+    linear-gradient(90deg, rgba(170, 136, 255, 0.10) 0%, rgba(80, 200, 255, 0.08) 50%, rgba(255, 216, 102, 0.06) 100%),
+    rgba(2, 8, 13, 0.92);
   border-bottom: 1px solid var(--admira-border);
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 /* ── Brand (logo izquierda) ────────────────────────────────── */
