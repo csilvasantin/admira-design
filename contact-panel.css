@@ -165,11 +165,11 @@ body.admira-contact-open .admira-contact-panel {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--admira-cyan, #50c8ff);
+  border: 1px solid var(--admira-green, #76b900);
   border-radius: 6px;
   padding: 10px 14px;
-  background: rgba(80, 200, 255, 0.13);
-  color: var(--admira-cyan, #50c8ff);
+  background: rgba(118, 185, 0, 0.13);
+  color: #b8e577;
   font-family: inherit;
   font-size: 0.72rem;
   font-weight: 700;

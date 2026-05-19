@@ -97,6 +97,7 @@
   font-weight: 500;
   line-height: 1;
   letter-spacing: .02em;
+  text-transform: none;
   padding: 7px 12px;
   border-radius: var(--admira-radius-sm);
   border: 1px solid transparent;

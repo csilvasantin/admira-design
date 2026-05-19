@@ -60,7 +60,7 @@
           '</label>' +
           '<div class="admira-contact-actions">' +
             '<button type="submit">' + t('Send request', 'Enviar solicitud') + '</button>' +
-            '<a href="https://calendar.google.com/calendar/u/0/r/eventedit?text=Videoconferencia%20Admira&details=Quiero%20agendar%20una%20videoconferencia%20con%20Admira.&add=info%40admira.com" target="_blank" rel="noopener noreferrer">' + t('Book a video call', 'Agendar videollamada') + '</a>' +
+            '<a href="https://calendar.google.com/calendar/u/0/r/eventedit?text=Videoconferencia%20Admira&details=Quiero%20agendar%20una%20videoconferencia%20con%20Admira.&add=info%40admira.com" target="_blank" rel="noopener noreferrer">' + t('Book a video conference', 'Agendar videoconferencia') + '</a>' +
           '</div>' +
           '<p class="admira-contact-status" role="status" aria-live="polite"></p>' +
         '</form>' +
