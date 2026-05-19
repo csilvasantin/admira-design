@@ -1,0 +1,87 @@
+/* ============================================================
+   Admira · group.css · Pill "Admira · Xperience" del grupo
+   Depende de tokens.css.
+   Markup:
+     <div class="admira-group">
+       <div class="admira-group-kicker">Admira · Xperience</div>
+       <div class="admira-group-row">
+         <a class="admira-group-link" href="https://www.admira.studio">Pixer.IA</a>
+         <span class="admira-group-sep">·</span>
+         <a class="admira-group-link" href="https://www.xpaceos.com">XpaceOS</a>
+         <span class="admira-group-sep">·</span>
+         <a class="admira-group-link" href="https://www.admira.app">Xbusiness</a>
+       </div>
+     </div>
+   ============================================================ */
+
+.admira-group {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px 12px;
+  border: 1px solid var(--admira-border);
+  border-radius: var(--admira-radius-lg);
+  background: linear-gradient(180deg, rgba(170, 136, 255, .12) 0%, rgba(80, 200, 255, .06) 100%);
+  box-shadow: 0 0 24px rgba(170, 136, 255, .15), inset 0 0 18px rgba(170, 136, 255, .06);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  max-width: 92vw;
+}
+
+.admira-group-kicker {
+  font-family: var(--admira-font-mono);
+  font-size: 9px;
+  letter-spacing: .42em;
+  color: rgba(216, 200, 255, .85);
+  text-transform: uppercase;
+  text-shadow: 0 0 12px rgba(170, 136, 255, .6);
+  position: relative;
+  padding: 0 14px;
+}
+.admira-group-kicker::before,
+.admira-group-kicker::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 18px;
+  height: 1px;
+  background: rgba(170, 136, 255, .5);
+}
+.admira-group-kicker::before { right: 100%; margin-right: 4px; }
+.admira-group-kicker::after  { left:  100%; margin-left:  4px; }
+
+.admira-group-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-family: var(--admira-font-mono);
+  font-size: 14px;
+  letter-spacing: .14em;
+  text-shadow: 0 0 12px rgba(170, 136, 255, .6), 0 2px 4px rgba(0, 0, 0, .8);
+}
+
+.admira-group-sep {
+  color: rgba(170, 136, 255, .55);
+  font-weight: bold;
+}
+
+.admira-group-link {
+  color: var(--admira-amber);
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(255, 216, 102, .45);
+  padding-bottom: 1px;
+  transition: color var(--admira-tx-fast), border-color var(--admira-tx-fast), text-shadow var(--admira-tx-fast);
+}
+.admira-group-link:hover {
+  color: #fff;
+  border-bottom-color: #fff;
+  text-shadow: 0 0 14px rgba(255, 216, 102, .85), 0 0 24px rgba(170, 136, 255, .5);
+}
+
+@media (max-width: 540px) {
+  .admira-group { padding: 12px 20px 10px; }
+  .admira-group-row { font-size: 12px; letter-spacing: .1em; gap: 8px; }
+}

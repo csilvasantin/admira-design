@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admira · Xperience · Design System</title>
+<meta name="description" content="Sistema de diseño compartido del grupo Admira: tokens, nav header y group pill usados por admira.studio · xpaceos.com · admira.app · admira.live · admira.tv · admira.store.">
+<link rel="stylesheet" href="./tokens.css">
+<link rel="stylesheet" href="./nav.css">
+<link rel="stylesheet" href="./group.css">
+<style>
+  body {
+    background: radial-gradient(circle at 50% 0%, #1a1428 0%, var(--admira-bg) 65%);
+    min-height: 100vh;
+    padding: 96px 24px 48px;
+  }
+  main {
+    max-width: 920px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--admira-space-5);
+  }
+  header.hero {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--admira-space-3);
+  }
+  header.hero .admira-eyebrow {
+    color: var(--admira-violet);
+  }
+  header.hero p {
+    color: var(--admira-text-muted);
+    max-width: 640px;
+    margin: 0;
+    line-height: 1.6;
+  }
+  section.demo {
+    background: rgba(255, 255, 255, .03);
+    border: 1px solid var(--admira-border);
+    border-radius: var(--admira-radius-lg);
+    padding: var(--admira-space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--admira-space-3);
+  }
+  section.demo h3 { color: var(--admira-amber); }
+  section.demo .demo-meta {
+    font-size: 12px;
+    color: var(--admira-text-dim);
+    font-family: var(--admira-font-mono);
+  }
+  section.demo pre {
+    background: #050810;
+    border: 1px solid var(--admira-border);
+    border-radius: var(--admira-radius-sm);
+    padding: var(--admira-space-3);
+    overflow-x: auto;
+    color: var(--admira-text-muted);
+    font-size: 12px;
+    line-height: 1.6;
+    margin: 0;
+  }
+  section.demo pre code { font-family: var(--admira-font-mono); }
+  .palette {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+  }
+  .palette-swatch {
+    border: 1px solid var(--admira-border);
+    border-radius: var(--admira-radius-sm);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .palette-swatch-color { height: 56px; }
+  .palette-swatch-label {
+    padding: 8px;
+    font-family: var(--admira-font-mono);
+    font-size: 10px;
+    background: #050810;
+    color: var(--admira-text-muted);
+    text-align: center;
+  }
+  footer {
+    margin-top: var(--admira-space-6);
+    text-align: center;
+    color: var(--admira-text-dim);
+    font-size: 12px;
+    font-family: var(--admira-font-mono);
+  }
+  footer a { color: var(--admira-amber); }
+</style>
+</head>
+<body>
+
+<!-- ── Nav demo ────────────────────────────────────────────── -->
+<nav class="admira-nav" aria-label="Navegación principal">
+  <a class="admira-nav-brand" href="https://www.admira.app">
+    <span class="admira-nav-brand-name">Admira</span>
+    <span class="admira-nav-brand-tag">Xperience</span>
+  </a>
+  <div class="admira-nav-items">
+    <a class="admira-nav-link admira-nav-link-active" href="#">Design</a>
+    <a class="admira-nav-link admira-nav-link-external" href="https://www.admira.studio">Pixer.IA</a>
+    <a class="admira-nav-link admira-nav-link-external" href="https://www.xpaceos.com">XpaceOS</a>
+    <a class="admira-nav-link admira-nav-link-external" href="https://www.admira.app">Xbusiness</a>
+    <a class="admira-nav-link admira-nav-link-cta" href="mailto:csilva@admira.com">Contacto</a>
+  </div>
+</nav>
+
+<main>
+
+  <header class="hero">
+    <div class="admira-eyebrow">Admira · Xperience · v0.1.0</div>
+    <h1 class="admira-h1">Sistema de diseño compartido</h1>
+    <p>Una sola fuente de verdad para la identidad visual del grupo Admira. Tokens, nav header y group pill usados por <a href="https://www.admira.studio" style="color:var(--admira-violet)">admira.studio</a>, <a href="https://www.xpaceos.com" style="color:var(--admira-cyan)">xpaceos.com</a>, <a href="https://www.admira.app" style="color:var(--admira-amber)">admira.app</a> y demás dominios del grupo.</p>
+  </header>
+
+  <!-- Paleta -->
+  <section class="demo">
+    <div>
+      <div class="admira-eyebrow">Tokens</div>
+      <h3 class="admira-h2">Paleta</h3>
+      <div class="demo-meta">CSS vars en <code>:root</code>. Usar siempre <code>var(--admira-*)</code>, no hex directos.</div>
+    </div>
+    <div class="palette">
+      <div class="palette-swatch"><div class="palette-swatch-color" style="background:#ffd866"></div><div class="palette-swatch-label">--admira-amber<br>Admira</div></div>
+      <div class="palette-swatch"><div class="palette-swatch-color" style="background:#aa88ff"></div><div class="palette-swatch-label">--admira-violet<br>Pixer.IA</div></div>
+      <div class="palette-swatch"><div class="palette-swatch-color" style="background:#50c8ff"></div><div class="palette-swatch-label">--admira-cyan<br>XpaceOS / Twin</div></div>
+      <div class="palette-swatch"><div class="palette-swatch-color" style="background:#76b900"></div><div class="palette-swatch-label">--admira-green<br>Nvidia</div></div>
+      <div class="palette-swatch"><div class="palette-swatch-color" style="background:#ff4488"></div><div class="palette-swatch-label">--admira-magenta<br>CTA</div></div>
+      <div class="palette-swatch"><div class="palette-swatch-color" style="background:#e2231a"></div><div class="palette-swatch-label">--admira-red<br>Lenovo</div></div>
+    </div>
+  </section>
+
+  <!-- Nav header -->
+  <section class="demo">
+    <div>
+      <div class="admira-eyebrow">Componente</div>
+      <h3 class="admira-h2">Nav header</h3>
+      <div class="demo-meta">Visible arriba en esta página. Fixed top + space-between + backdrop blur.</div>
+    </div>
+    <pre><code>&lt;link rel="stylesheet" href="https://csilvasantin.github.io/admira-design/tokens.css"&gt;
+&lt;link rel="stylesheet" href="https://csilvasantin.github.io/admira-design/nav.css"&gt;
+
+&lt;nav class="admira-nav"&gt;
+  &lt;a class="admira-nav-brand" href="..."&gt;
+    &lt;span class="admira-nav-brand-name"&gt;Admira&lt;/span&gt;
+    &lt;span class="admira-nav-brand-tag"&gt;Xperience&lt;/span&gt;
+  &lt;/a&gt;
+  &lt;div class="admira-nav-items"&gt;
+    &lt;a class="admira-nav-link admira-nav-link-active" href="#"&gt;Design&lt;/a&gt;
+    &lt;a class="admira-nav-link admira-nav-link-external" href="..."&gt;Pixer.IA&lt;/a&gt;
+    &lt;a class="admira-nav-link admira-nav-link-cta" href="mailto:..."&gt;Contacto&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+  </section>
+
+  <!-- Group pill -->
+  <section class="demo">
+    <div>
+      <div class="admira-eyebrow">Componente</div>
+      <h3 class="admira-h2">Group pill — Admira · Xperience</h3>
+      <div class="demo-meta">Para mostrar los dominios del grupo como un conjunto unificado, no marcas sueltas.</div>
+    </div>
+    <div style="text-align:center; padding: 20px 0;">
+      <div class="admira-group">
+        <div class="admira-group-kicker">Admira · Xperience</div>
+        <div class="admira-group-row">
+          <a class="admira-group-link" href="https://www.admira.studio" target="_blank" rel="noopener">Pixer.IA</a>
+          <span class="admira-group-sep">·</span>
+          <a class="admira-group-link" href="https://www.xpaceos.com" target="_blank" rel="noopener">XpaceOS</a>
+          <span class="admira-group-sep">·</span>
+          <a class="admira-group-link" href="https://www.admira.app" target="_blank" rel="noopener">Xbusiness</a>
+        </div>
+      </div>
+    </div>
+    <pre><code>&lt;link rel="stylesheet" href="https://csilvasantin.github.io/admira-design/group.css"&gt;
+
+&lt;div class="admira-group"&gt;
+  &lt;div class="admira-group-kicker"&gt;Admira · Xperience&lt;/div&gt;
+  &lt;div class="admira-group-row"&gt;
+    &lt;a class="admira-group-link" href="https://www.admira.studio"&gt;Pixer.IA&lt;/a&gt;
+    &lt;span class="admira-group-sep"&gt;·&lt;/span&gt;
+    &lt;a class="admira-group-link" href="https://www.xpaceos.com"&gt;XpaceOS&lt;/a&gt;
+    &lt;span class="admira-group-sep"&gt;·&lt;/span&gt;
+    &lt;a class="admira-group-link" href="https://www.admira.app"&gt;Xbusiness&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+  </section>
+
+</main>
+
+<footer>
+  // Admira · Xperience · v0.1.0 · <a href="https://github.com/csilvasantin/admira-design">github.com/csilvasantin/admira-design</a>
+</footer>
+
+</body>
+</html>
