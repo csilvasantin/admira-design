@@ -24,18 +24,23 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--admira-space-3);
-  padding: var(--admira-space-3) var(--admira-space-4);
+  padding: 0 var(--admira-space-4);
+  min-height: 44px;
+  line-height: 1;
   background: linear-gradient(180deg, rgba(7, 10, 16, 0.85) 0%, rgba(7, 10, 16, 0) 100%);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
 
 /* Variante: barra en el flujo normal del documento (no fixed) — útil
-   para insertar arriba del topnav existente sin solapamiento. Reduce
-   altura y usa fondo sólido translúcido. */
+   para insertar arriba del topnav existente sin solapamiento. Mantiene
+   la misma altura (44px) en todos los sitios independientemente del
+   line-height heredado del body, para que la banda sea idéntica. */
 .admira-nav.admira-nav-static {
   position: static;
-  padding: 10px var(--admira-space-4);
+  padding: 0 var(--admira-space-4);
+  min-height: 44px;
+  line-height: 1;
   background:
     linear-gradient(90deg, rgba(170, 136, 255, 0.10) 0%, rgba(80, 200, 255, 0.08) 50%, rgba(255, 216, 102, 0.06) 100%),
     rgba(2, 8, 13, 0.92);
@@ -53,6 +58,7 @@
   color: var(--admira-amber);
   font-family: var(--admira-font-mono);
   font-size: 13px;
+  line-height: 1;
   letter-spacing: .14em;
   text-transform: uppercase;
   font-weight: 700;
@@ -89,8 +95,9 @@
   font-family: var(--admira-font-sans);
   font-size: 13px;
   font-weight: 500;
+  line-height: 1;
   letter-spacing: .02em;
-  padding: 8px 14px;
+  padding: 7px 12px;
   border-radius: var(--admira-radius-sm);
   border: 1px solid transparent;
   background: rgba(255, 255, 255, .04);
