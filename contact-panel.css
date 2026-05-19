@@ -1,0 +1,221 @@
+/* ============================================================
+   Admira · contact-panel.css
+   Panel lateral de contacto compartido por el grupo. Réplica
+   adaptada del .entry-contact-panel de www.admiranext.com.
+   Marcado: el JS inyecta los elementos en <body>. Se abre
+   con cualquier disparador que tenga [data-admira-contact].
+   ============================================================ */
+
+.admira-contact-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.64);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.34s ease, visibility 0.34s ease;
+}
+.admira-contact-panel {
+  position: fixed;
+  z-index: 1010;
+  top: 20px;
+  right: 24px;
+  bottom: 20px;
+  width: min(40vw, 500px);
+  min-width: 380px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(6, 14, 29, 0.98), rgba(27, 32, 48, 0.96));
+  color: #e7edf6;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.42);
+  padding: 28px;
+  transform: translateX(calc(100% + 40px));
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    transform 0.38s cubic-bezier(.2, .8, .2, 1),
+    opacity 0.28s ease,
+    visibility 0.28s ease;
+  overflow-y: auto;
+  font-family: var(--admira-font-sans, -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif);
+  line-height: 1.4;
+}
+body.admira-contact-open .admira-contact-backdrop,
+body.admira-contact-open .admira-contact-panel {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+body.admira-contact-open .admira-contact-panel {
+  transform: translateX(0);
+}
+.admira-contact-close {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.09);
+  color: #fff;
+  font-family: inherit;
+  font-size: 1.05rem;
+  cursor: pointer;
+}
+.admira-contact-close:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+.admira-contact-panel h2 {
+  margin: 0 58px 36px 0;
+  color: #e7edf6;
+  font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  font-weight: 700;
+}
+.admira-contact-panel-grid {
+  display: grid;
+  grid-template-columns: minmax(120px, 0.9fr) minmax(0, 1.25fr);
+  gap: 16px 24px;
+}
+.admira-contact-panel-grid > div,
+.admira-contact-panel-grid > form {
+  border-top: 1px solid rgba(231, 237, 246, 0.24);
+  padding-top: 13px;
+}
+.admira-contact-panel-grid > div:nth-child(odd) {
+  color: rgba(231, 237, 246, 0.9);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.admira-contact-panel-grid > div:nth-child(even) {
+  display: grid;
+  gap: 8px;
+  color: #e7edf6;
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.28;
+}
+.admira-contact-panel a {
+  color: #e7edf6;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.admira-contact-panel a:hover {
+  color: var(--admira-amber, #ffd866);
+}
+
+/* ── Formulario "We call you" ──────────────────────────────── */
+.admira-contact-form {
+  background: transparent;
+  border-right: 0;
+  border-bottom: 0;
+  border-left: 0;
+  border-radius: 0;
+  padding: 14px 0 0;
+  display: grid;
+  gap: 12px;
+}
+.admira-contact-form label {
+  display: grid;
+  gap: 4px;
+}
+.admira-contact-form label span {
+  color: rgba(231, 237, 246, 0.8);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.admira-contact-form input,
+.admira-contact-form textarea {
+  min-height: 42px;
+  border: 1px solid rgba(231, 237, 246, 0.18);
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.32);
+  color: #e7edf6;
+  padding: 0 12px;
+  font-family: inherit;
+  font-size: 0.78rem;
+  outline: none;
+}
+.admira-contact-form textarea {
+  min-height: 86px;
+  padding: 10px 12px;
+  resize: vertical;
+}
+.admira-contact-form input:focus,
+.admira-contact-form textarea:focus {
+  border-color: var(--admira-cyan, #50c8ff);
+  box-shadow: 0 0 0 2px rgba(80, 200, 255, 0.18);
+}
+.admira-contact-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.admira-contact-actions button,
+.admira-contact-actions a {
+  min-height: 40px;
+  flex: 1 1 150px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--admira-cyan, #50c8ff);
+  border-radius: 6px;
+  padding: 10px 14px;
+  background: rgba(80, 200, 255, 0.13);
+  color: var(--admira-cyan, #50c8ff);
+  font-family: inherit;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: filter 0.15s ease, background 0.15s ease;
+}
+.admira-contact-actions a {
+  border-color: var(--admira-amber, #ffd866);
+  color: var(--admira-amber, #ffd866);
+  background: rgba(255, 216, 102, 0.10);
+}
+.admira-contact-actions button:hover,
+.admira-contact-actions a:hover { filter: brightness(1.15); }
+.admira-contact-actions button:disabled { opacity: 0.55; cursor: wait; }
+.admira-contact-status {
+  min-height: 1em;
+  margin: 0;
+  color: var(--admira-amber, #ffd866);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+}
+
+@media (max-width: 720px) {
+  .admira-contact-panel {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    min-width: 0;
+    border-radius: 0;
+    padding: 20px 18px;
+  }
+  .admira-contact-panel h2 {
+    font-size: 1.4rem;
+    margin: 0 50px 22px 0;
+  }
+  .admira-contact-panel-grid {
+    grid-template-columns: 1fr;
+    gap: 8px 0;
+  }
+  .admira-contact-panel-grid > div,
+  .admira-contact-panel-grid > form {
+    padding-top: 10px;
+  }
+}
