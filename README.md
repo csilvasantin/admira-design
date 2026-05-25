@@ -34,16 +34,47 @@ Después usa las clases (ver `index.html` para markup completo):
 </nav>
 ```
 
+## Metaestilo del ecosistema (`meta.css`)
+
+Capa "meta" que une las **3 soluciones** de AdmiraNext como capas de un mismo OS,
+con el **digital twin de XpaceOS** como centro. El **cian** de XpaceOS es el color
+**vertebrador** común; cada producto añade su acento de capa:
+
+| Capa | Sitio | Rol | Acento |
+|---|---|---|---|
+| `os` | xpaceos.com | el OS / twin · **núcleo** | cian (espina) |
+| `studio` | admira.studio | Pixer.IA · contenido | violeta |
+| `app` | admira.app | OmniPublicity · demanda | ámbar |
+
+Cada sitio declara su capa en el `<body>` y obtiene su acento; la espina cian se mantiene:
+
+```html
+<body data-layer="studio">  <!-- os | studio | app -->
+<link rel="stylesheet" href="https://csilvasantin.github.io/admira-design/meta.css">
+```
+
+Componentes de `meta.css`:
+- `.admira-spine-rail` — fina línea cian (tejido conectivo). `<hr class="admira-spine-rail">`
+- `.admira-twin` — sello del ecosistema: núcleo XpaceOS + capas orbitando (CSS puro)
+- `.admira-meta-hero` — hero común que presenta cada web como una capa del OS
+- `.admira-ecosystem` — banda hub-and-spoke: el twin en el centro, las 3 capas alrededor
+
+Tokens nuevos (aditivos): `--admira-spine*` (cian fijo) y `--admira-accent*` (cambia por `data-layer`).
+Ver `meta.html` para el markup completo.
+
 ## Archivos
 
 - `tokens.css` — CSS vars (paleta, tipografías, espaciados, radios, sombras, transiciones)
 - `nav.css` — Header de navegación fixed top con brand + items + CTA
 - `group.css` — Pill "Admira · Xperience" para mostrar los dominios del grupo como conjunto
-- `index.html` — Demo de los componentes con código de ejemplo
+- `meta.css` — **Metaestilo del ecosistema** (espina cian + acento por capa + twin + ecosistema)
+- `index.html` — Demo de los componentes base
+- `meta.html` — Demo del metaestilo (twin, hero, ecosistema, acentos por capa)
 
 ## Versionado
 
-`v0.1.0` — primer release. Para evitar romper sitios que ya importan, cualquier breaking change → bump a `v0.2.0` en una rama distinta y los sitios importan la versión que prefieran (por ejemplo, `tokens.css?v=0.1.0`).
+`v0.1.0` — primer release (tokens, nav, group).
+`v0.2.0` — **capa meta** (`meta.css`): metaestilo del ecosistema con el twin de XpaceOS al centro. **Aditivo** — no altera el comportamiento de los sitios que solo importan v0.1.0; para usar el metaestilo, importa `meta.css` y añade `data-layer` al `<body>`.
 
 ## Licencia
 

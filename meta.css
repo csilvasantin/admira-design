@@ -1,0 +1,286 @@
+/* ============================================================
+   Admira · meta.css · Metaestilo del ecosistema  v0.2.0
+   ============================================================
+   Capa "meta" que une las 3 soluciones de AdmiraNext como capas
+   de un mismo OS, con el DIGITAL TWIN de XpaceOS como centro.
+
+     · XpaceOS  (Admira XP)     → núcleo / OS        → CIAN  (espina)
+     · admira.studio (Pixer.IA) → capa de contenido  → VIOLETA (acento)
+     · admira.app (OmniPublicity)→ capa de demanda    → ÁMBAR  (acento)
+
+   El CIAN es el color VERTEBRADOR común a las 3. Cada sitio declara
+   su capa con  <body data-layer="os|studio|app">  y obtiene su acento,
+   pero la espina cian permanece como tejido conectivo del ecosistema.
+
+   Depende de tokens.css. Aditivo: no altera el comportamiento v0.1.0.
+   ============================================================ */
+
+:root {
+  /* ── Espina: el color vertebrador del ecosistema (XpaceOS twin) ── */
+  --admira-spine:        var(--admira-cyan);          /* #50c8ff */
+  --admira-spine-soft:   rgba(80, 200, 255, .14);
+  --admira-spine-line:   rgba(80, 200, 255, .35);
+  --admira-spine-glow:   0 0 24px rgba(80, 200, 255, .45);
+
+  /* ── Acento de capa (lo sobreescribe cada sitio vía data-layer) ── */
+  --admira-accent:       var(--admira-cyan);          /* por defecto = OS/centro */
+  --admira-accent-soft:  rgba(80, 200, 255, .14);
+  --admira-accent-line:  rgba(80, 200, 255, .35);
+  --admira-accent-glow:  0 0 24px rgba(80, 200, 255, .45);
+  --admira-accent-name:  "XpaceOS";
+}
+
+/* ── Capas: cada sitio fija su acento; la espina sigue siendo cian ── */
+[data-layer="os"] {
+  --admira-accent:      var(--admira-cyan);
+  --admira-accent-soft: rgba(80, 200, 255, .14);
+  --admira-accent-line: rgba(80, 200, 255, .35);
+  --admira-accent-glow: 0 0 24px rgba(80, 200, 255, .45);
+  --admira-accent-name: "XpaceOS";
+}
+[data-layer="studio"] {
+  --admira-accent:      var(--admira-violet);
+  --admira-accent-soft: rgba(170, 136, 255, .14);
+  --admira-accent-line: rgba(170, 136, 255, .38);
+  --admira-accent-glow: 0 0 24px rgba(170, 136, 255, .45);
+  --admira-accent-name: "Pixer.IA";
+}
+[data-layer="app"] {
+  --admira-accent:      var(--admira-amber);
+  --admira-accent-soft: rgba(255, 216, 102, .14);
+  --admira-accent-line: rgba(255, 216, 102, .40);
+  --admira-accent-glow: 0 0 24px rgba(255, 216, 102, .45);
+  --admira-accent-name: "OmniPublicity";
+}
+
+/* ============================================================
+   1) SPINE RAIL — fina línea cian: el tejido conectivo común.
+   Colócala arriba del documento (o como separador de secciones).
+   ============================================================ */
+.admira-spine-rail {
+  height: 2px;
+  width: 100%;
+  border: 0;
+  margin: 0;
+  background: linear-gradient(90deg,
+      transparent 0%,
+      var(--admira-spine-line) 18%,
+      var(--admira-spine) 50%,
+      var(--admira-spine-line) 82%,
+      transparent 100%);
+  box-shadow: var(--admira-spine-glow);
+}
+
+/* ============================================================
+   2) TWIN MOTIF — sello del ecosistema: núcleo XpaceOS (cian) con
+   las capas orbitando. CSS puro. Markup:
+     <div class="admira-twin" aria-hidden="true">
+       <span class="admira-twin-core">XP</span>
+       <span class="admira-twin-orbit"></span>
+       <span class="admira-twin-node" style="--i:0;--n:3" data-node="studio"></span>
+       <span class="admira-twin-node" style="--i:1;--n:3" data-node="os"></span>
+       <span class="admira-twin-node" style="--i:2;--n:3" data-node="app"></span>
+     </div>
+   ============================================================ */
+.admira-twin {
+  --twin-size: 180px;
+  --twin-r: calc(var(--twin-size) / 2 - 14px);
+  position: relative;
+  width: var(--twin-size);
+  height: var(--twin-size);
+  flex: 0 0 auto;
+}
+.admira-twin-core {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+  width: 38%;
+  height: 38%;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #c8f2ff, var(--admira-spine) 55%, #156a92 100%);
+  color: #021018;
+  font-family: var(--admira-font-mono);
+  font-size: calc(var(--twin-size) * .075);
+  font-weight: 700;
+  letter-spacing: .05em;
+  box-shadow: var(--admira-spine-glow), inset 0 0 12px rgba(255, 255, 255, .35);
+  animation: admira-twin-pulse 3.2s ease-in-out infinite;
+  z-index: 2;
+}
+.admira-twin-orbit {
+  position: absolute;
+  inset: 7px;
+  border-radius: 50%;
+  border: 1px dashed var(--admira-spine-line);
+  box-shadow: inset 0 0 30px rgba(80, 200, 255, .10);
+  animation: admira-twin-spin 18s linear infinite;
+}
+.admira-twin-node {
+  --i: 0; --n: 3;
+  --ang: calc(360deg / var(--n) * var(--i) - 90deg);
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 14px; height: 14px;
+  margin: -7px;
+  border-radius: 50%;
+  transform: rotate(var(--ang)) translateX(var(--twin-r)) rotate(calc(-1 * var(--ang)));
+  background: var(--admira-spine);
+  box-shadow: 0 0 12px currentColor;
+  z-index: 3;
+}
+.admira-twin-node[data-node="studio"] { background: var(--admira-violet); color: var(--admira-violet); }
+.admira-twin-node[data-node="os"]     { background: var(--admira-cyan);   color: var(--admira-cyan); }
+.admira-twin-node[data-node="app"]    { background: var(--admira-amber);  color: var(--admira-amber); }
+
+@keyframes admira-twin-pulse {
+  0%, 100% { box-shadow: var(--admira-spine-glow), inset 0 0 12px rgba(255,255,255,.35); }
+  50%      { box-shadow: 0 0 38px rgba(80,200,255,.75), inset 0 0 12px rgba(255,255,255,.5); }
+}
+@keyframes admira-twin-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .admira-twin-core, .admira-twin-orbit { animation: none; }
+}
+
+/* ============================================================
+   3) META HERO — hero común que presenta cada web como una capa
+   del OS bajo el twin. Markup:
+     <header class="admira-meta-hero">
+       <p class="admira-meta-eyebrow">Una capa de XpaceOS · digital twin</p>
+       <h1 class="admira-meta-title">...</h1>
+       <p class="admira-meta-sub">...</p>
+     </header>
+   ============================================================ */
+.admira-meta-hero {
+  position: relative;
+  padding: var(--admira-space-6) var(--admira-space-4) var(--admira-space-5);
+  text-align: center;
+  background:
+    radial-gradient(ellipse at 50% -10%, var(--admira-spine-soft), transparent 60%),
+    radial-gradient(ellipse at 50% 120%, var(--admira-accent-soft), transparent 55%);
+  border-bottom: 1px solid var(--admira-border);
+}
+.admira-meta-eyebrow {
+  font-family: var(--admira-font-mono);
+  font-size: 10px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--admira-spine);
+  text-shadow: 0 0 14px rgba(80, 200, 255, .5);
+  margin: 0 0 var(--admira-space-3);
+}
+.admira-meta-title {
+  font-family: var(--admira-font-sans);
+  font-size: clamp(30px, 6vw, 56px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0 auto var(--admira-space-3);
+  max-width: 16ch;
+  background: linear-gradient(100deg, var(--admira-text) 30%, var(--admira-accent) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.admira-meta-sub {
+  font-size: 17px;
+  color: var(--admira-text-muted);
+  max-width: 60ch;
+  margin: 0 auto;
+}
+
+/* ============================================================
+   4) ECOSYSTEM — banda hub-and-spoke: el twin de XpaceOS en el
+   centro y las 3 capas alrededor; todo "vuelve" al twin (home).
+   Markup:
+     <section class="admira-ecosystem" data-layer="...">
+       <p class="admira-eco-kicker">El ecosistema AdmiraNext</p>
+       <div class="admira-eco-orbit">
+         <div class="admira-twin">…ver arriba…</div>
+       </div>
+       <div class="admira-eco-layers">
+         <a class="admira-eco-layer" data-node="studio" href="https://www.admira.studio">…</a>
+         <a class="admira-eco-layer is-core" data-node="os" href="https://www.xpaceos.com">…</a>
+         <a class="admira-eco-layer" data-node="app" href="https://www.admira.app">…</a>
+       </div>
+     </section>
+   ============================================================ */
+.admira-ecosystem {
+  text-align: center;
+  padding: var(--admira-space-6) var(--admira-space-4);
+  background:
+    radial-gradient(ellipse at 50% 50%, var(--admira-spine-soft), transparent 70%),
+    var(--admira-bg-elev);
+  border-top: 1px solid var(--admira-border);
+}
+.admira-eco-kicker {
+  font-family: var(--admira-font-mono);
+  font-size: 9px;
+  letter-spacing: .42em;
+  text-transform: uppercase;
+  color: var(--admira-spine);
+  text-shadow: 0 0 12px rgba(80, 200, 255, .6);
+  margin: 0 0 var(--admira-space-4);
+}
+.admira-eco-orbit {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--admira-space-5);
+}
+.admira-eco-layers {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--admira-space-3);
+  max-width: 760px;
+  margin: 0 auto;
+}
+.admira-eco-layer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-decoration: none;
+  text-align: left;
+  padding: var(--admira-space-3) var(--admira-space-4);
+  border: 1px solid var(--admira-border);
+  border-radius: var(--admira-radius-lg);
+  background: rgba(255, 255, 255, .03);
+  transition: transform var(--admira-tx-fast), border-color var(--admira-tx-fast), box-shadow var(--admira-tx-fast);
+}
+.admira-eco-layer:hover { transform: translateY(-2px); }
+.admira-eco-layer .admira-eco-name {
+  font-family: var(--admira-font-mono);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+.admira-eco-layer .admira-eco-role {
+  font-size: 12px;
+  color: var(--admira-text-muted);
+}
+.admira-eco-layer[data-node="studio"] { --c: var(--admira-violet); }
+.admira-eco-layer[data-node="os"]     { --c: var(--admira-cyan); }
+.admira-eco-layer[data-node="app"]    { --c: var(--admira-amber); }
+.admira-eco-layer .admira-eco-name { color: var(--c); }
+.admira-eco-layer:hover {
+  border-color: var(--c);
+  box-shadow: 0 0 22px -6px var(--c);
+}
+/* La capa OS (centro/twin) destaca como núcleo del sistema */
+.admira-eco-layer.is-core {
+  background: linear-gradient(180deg, rgba(80, 200, 255, .10), rgba(80, 200, 255, .03));
+  border-color: var(--admira-spine-line);
+  box-shadow: inset 0 0 22px rgba(80, 200, 255, .08);
+}
+.admira-eco-layer.is-core::before {
+  content: "◆ núcleo";
+  font-family: var(--admira-font-mono);
+  font-size: 8px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--admira-spine);
+}
+
+@media (max-width: 620px) {
+  .admira-eco-layers { grid-template-columns: 1fr; max-width: 340px; }
+}

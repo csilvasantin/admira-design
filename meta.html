@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es" data-layer="os">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admira · Metaestilo del ecosistema (XpaceOS twin)</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="nav.css">
+<link rel="stylesheet" href="group.css">
+<link rel="stylesheet" href="meta.css">
+<style>
+  body { padding-top: 0; }
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 0 var(--admira-space-4) var(--admira-space-6); }
+  .demo-label { font-family: var(--admira-font-mono); font-size: 10px; letter-spacing:.2em; text-transform:uppercase; color: var(--admira-text-dim); margin: var(--admira-space-6) 0 var(--admira-space-3); }
+  .layer-row { display:flex; gap:14px; flex-wrap:wrap; justify-content:center; margin-top: var(--admira-space-4); }
+  .layer-demo { flex:1 1 220px; border:1px solid var(--admira-border); border-radius: var(--admira-radius-lg); padding: var(--admira-space-4); text-align:center; background: var(--admira-accent-soft); }
+  .layer-demo .chip { display:inline-block; font-family:var(--admira-font-mono); font-size:11px; letter-spacing:.1em; padding:4px 10px; border-radius:999px; color:#04121a; background:var(--admira-accent); box-shadow:var(--admira-accent-glow); }
+  .layer-demo p { color: var(--admira-text-muted); font-size:13px; }
+</style>
+</head>
+<body data-layer="os">
+
+  <nav class="admira-nav admira-nav-static" aria-label="Navegación principal">
+    <a class="admira-nav-brand" href="https://www.admira.app">
+      <span class="admira-nav-brand-name">Admira</span>
+      <span class="admira-nav-brand-tag">Xperience</span>
+    </a>
+    <div class="admira-nav-items">
+      <a class="admira-nav-link admira-nav-link-external" href="https://www.admira.studio">Pixer.IA</a>
+      <a class="admira-nav-link admira-nav-link-active admira-nav-link-external" href="https://www.xpaceos.com">XpaceOS</a>
+      <a class="admira-nav-link admira-nav-link-external" href="https://www.admira.app">Xbusiness</a>
+      <a class="admira-nav-link admira-nav-link-cta" href="mailto:csilva@admira.com">Contacto</a>
+    </div>
+  </nav>
+
+  <hr class="admira-spine-rail">
+
+  <!-- META HERO (capa OS = centro) -->
+  <header class="admira-meta-hero">
+    <p class="admira-meta-eyebrow">Una capa de XpaceOS · digital twin</p>
+    <h1 class="admira-meta-title">Un solo OS. Tres capas. Un gemelo digital en el centro.</h1>
+    <p class="admira-meta-sub">El metaestilo de AdmiraNext: el cian de XpaceOS vertebra las tres soluciones, y cada producto añade su acento de capa.</p>
+  </header>
+
+  <div class="wrap">
+    <p class="demo-label">Motivo del twin (núcleo XpaceOS + capas orbitando)</p>
+    <div style="display:flex;justify-content:center">
+      <div class="admira-twin" aria-hidden="true">
+        <span class="admira-twin-core">XP</span>
+        <span class="admira-twin-orbit"></span>
+        <span class="admira-twin-node" style="--i:0;--n:3" data-node="studio"></span>
+        <span class="admira-twin-node" style="--i:1;--n:3" data-node="os"></span>
+        <span class="admira-twin-node" style="--i:2;--n:3" data-node="app"></span>
+      </div>
+    </div>
+
+    <p class="demo-label">Acento por capa (la espina cian es común; el acento cambia)</p>
+    <div class="layer-row">
+      <div class="layer-demo" data-layer="studio"><span class="chip">Pixer.IA</span><p>admira.studio · capa de contenido · violeta</p></div>
+      <div class="layer-demo" data-layer="os"><span class="chip">XpaceOS</span><p>el OS / twin · núcleo · cian (espina)</p></div>
+      <div class="layer-demo" data-layer="app"><span class="chip">OmniPublicity</span><p>admira.app · capa de demanda · ámbar</p></div>
+    </div>
+  </div>
+
+  <!-- ECOSYSTEM hub-and-spoke -->
+  <section class="admira-ecosystem">
+    <p class="admira-eco-kicker">El ecosistema AdmiraNext</p>
+    <div class="admira-eco-orbit">
+      <div class="admira-twin" aria-hidden="true">
+        <span class="admira-twin-core">XP</span>
+        <span class="admira-twin-orbit"></span>
+        <span class="admira-twin-node" style="--i:0;--n:3" data-node="studio"></span>
+        <span class="admira-twin-node" style="--i:1;--n:3" data-node="os"></span>
+        <span class="admira-twin-node" style="--i:2;--n:3" data-node="app"></span>
+      </div>
+    </div>
+    <div class="admira-eco-layers">
+      <a class="admira-eco-layer" data-node="studio" href="https://www.admira.studio">
+        <span class="admira-eco-name">Pixer.IA</span>
+        <span class="admira-eco-role">admira.studio · creación de contenido IA</span>
+      </a>
+      <a class="admira-eco-layer is-core" data-node="os" href="https://www.xpaceos.com">
+        <span class="admira-eco-name">XpaceOS</span>
+        <span class="admira-eco-role">el OS de retail físico · digital twin</span>
+      </a>
+      <a class="admira-eco-layer" data-node="app" href="https://www.admira.app">
+        <span class="admira-eco-name">OmniPublicity</span>
+        <span class="admira-eco-role">admira.app · marketplace de demanda</span>
+      </a>
+    </div>
+  </section>
+
+</body>
+</html>
