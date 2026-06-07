@@ -1,0 +1,87 @@
+/* ============================================================
+   Emission Calendar — módulo compartido del calendario de emisión
+   Mismo render en pixeria.com, xpaceos.com y admira.app.
+   Paleta propia (no depende de los tokens del host) para que se
+   vea IDÉNTICO en los tres sitios. Todo bajo .ec-root.
+   ============================================================ */
+.ec-root{
+  --ec-bg:#02080d;--ec-ink:#dff8ff;--ec-mut:#75aab9;--ec-brand:#78f3ff;
+  --ec-accent:#ffd866;--ec-good:#88ffaa;--ec-warn:#ff8866;--ec-danger:#ff4f5e;
+  --ec-own:#b78cff;--ec-card:#0a1620;--ec-card2:#0d1c28;--ec-line:rgba(120,243,255,.18);
+  color:var(--ec-ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.ec-root *{box-sizing:border-box}
+
+/* KPIs */
+.ec-kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:0 0 18px}
+.ec-kpis.ec-pub{grid-template-columns:repeat(4,1fr)}
+.ec-kpi{background:var(--ec-card);border:1px solid var(--ec-line);border-radius:13px;padding:14px 16px}
+.ec-kpi .ec-n{font-size:26px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.ec-kpi .ec-l{font-size:11px;color:var(--ec-mut);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.07em;text-transform:uppercase;margin-top:3px}
+.ec-kpi.sold .ec-n{color:var(--ec-brand)} .ec-kpi.free .ec-n{color:var(--ec-good)} .ec-kpi.rev .ec-n{color:var(--ec-accent)}
+
+/* Now playing */
+.ec-now{display:flex;align-items:center;gap:14px;background:linear-gradient(90deg,rgba(120,243,255,.10),transparent);border:1px solid var(--ec-line);border-radius:13px;padding:13px 18px;margin-bottom:18px}
+.ec-now .ec-pulse{width:10px;height:10px;border-radius:50%;background:var(--ec-good);box-shadow:0 0 12px var(--ec-good);animation:ec-p 1.6s infinite;flex:none}
+@keyframes ec-p{0%,100%{opacity:1}50%{opacity:.25}}
+.ec-now .ec-lab{font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ec-mut)}
+.ec-now b{font-size:16px} .ec-now .ec-meta{color:var(--ec-mut);font-size:13px}
+.ec-now.ec-freebar .ec-pulse{background:var(--ec-accent);box-shadow:0 0 12px var(--ec-accent)}
+
+/* Bands */
+.ec-band{background:var(--ec-card);border:1px solid var(--ec-line);border-radius:14px;padding:15px 17px;margin-bottom:12px}
+.ec-band.cur{border-color:var(--ec-good);box-shadow:0 0 0 1px rgba(136,255,170,.22)}
+.ec-bhead{display:flex;align-items:center;gap:11px;margin-bottom:11px;flex-wrap:wrap}
+.ec-btitle{font-size:16px;font-weight:700}
+.ec-bhours{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--ec-mut)}
+.ec-nowtag{font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.1em;color:#001620;background:var(--ec-good);padding:2px 8px;border-radius:999px;font-weight:700}
+.ec-avail{margin-left:auto;font-size:12px;color:var(--ec-mut)} .ec-avail b{color:var(--ec-good)}
+.ec-slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.ec-slot{border:1px solid var(--ec-line);border-radius:10px;padding:9px 11px;min-height:62px;display:flex;flex-direction:column;justify-content:center;position:relative;font-size:12px}
+.ec-slot.free{border-style:dashed;color:var(--ec-mut);align-items:center;text-align:center}
+.ec-slot.free.act{cursor:pointer;transition:border-color .12s,color .12s}
+.ec-slot.free.act:hover{border-color:var(--ec-accent);color:var(--ec-accent)}
+.ec-slot.free.own.act:hover{border-color:var(--ec-own);color:var(--ec-own)}
+.ec-slot.paid{background:rgba(136,255,170,.06);border-color:rgba(136,255,170,.3)}
+.ec-slot.ownc{background:rgba(183,140,255,.08);border-color:rgba(183,140,255,.4)}
+.ec-slot.pending{background:rgba(255,216,102,.07);border-color:rgba(255,216,102,.4)}
+.ec-slot.playing{box-shadow:0 0 0 1px var(--ec-good)}
+.ec-slot .ec-tag{font-family:ui-monospace,Menlo,monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px}
+.ec-slot.paid .ec-tag{color:var(--ec-good)} .ec-slot.ownc .ec-tag{color:var(--ec-own)} .ec-slot.pending .ec-tag{color:var(--ec-accent)}
+.ec-slot .ec-adv{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ec-slot .ec-ttl{color:var(--ec-mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ec-slot .ec-x{position:absolute;top:4px;right:6px;color:var(--ec-mut);cursor:pointer;font-size:13px;opacity:0;transition:opacity .12s}
+.ec-slot:hover .ec-x{opacity:1} .ec-slot .ec-x:hover{color:var(--ec-danger)}
+.ec-slot .ec-inl{display:flex;gap:5px;margin-top:6px}
+.ec-slot .ec-inl button{flex:1;padding:3px;font-size:11px;border-radius:6px;cursor:pointer;border:1px solid var(--ec-line);background:transparent;color:var(--ec-ink)}
+.ec-slot .ec-inl .ok{border-color:var(--ec-good);color:var(--ec-good)} .ec-slot .ec-inl .no{border-color:var(--ec-danger);color:var(--ec-danger)}
+
+.ec-empty{color:var(--ec-mut);text-align:center;padding:50px 20px;font-size:14px}
+.ec-foot{color:var(--ec-mut);font-size:12px;margin-top:14px;text-align:center;font-family:ui-monospace,Menlo,monospace}
+
+/* Modal + toast (montados en <body>) */
+.ec-modal{position:fixed;inset:0;background:rgba(2,8,13,.78);backdrop-filter:blur(4px);z-index:100000;display:none;align-items:center;justify-content:center;padding:20px}
+.ec-modal.open{display:flex}
+.ec-box{width:100%;max-width:460px;background:var(--ec-card,#0a1620);border:1px solid var(--ec-line,rgba(120,243,255,.18));border-radius:16px;padding:24px;box-shadow:0 30px 80px rgba(0,0,0,.6);color:var(--ec-ink,#dff8ff);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+.ec-box h3{margin:0 0 4px;font-size:20px} .ec-box .ec-sub{color:var(--ec-mut,#75aab9);font-size:13px;margin:0 0 18px}
+.ec-f{margin-bottom:13px}
+.ec-f label{display:block;font-size:11px;color:var(--ec-mut,#75aab9);font-family:ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;margin-bottom:5px}
+.ec-f input,.ec-f select{width:100%;background:var(--ec-card2,#0d1c28);border:1px solid var(--ec-line,rgba(120,243,255,.18));border-radius:8px;color:var(--ec-ink,#dff8ff);padding:9px 11px;font-size:13px;outline:0}
+.ec-f input:focus,.ec-f select:focus{border-color:var(--ec-brand,#78f3ff)}
+.ec-row{display:flex;gap:10px} .ec-row .ec-f{flex:1}
+.ec-seg{display:flex;gap:6px;margin-bottom:13px}
+.ec-seg button{flex:1;padding:8px;border:1px solid var(--ec-line,rgba(120,243,255,.18));background:transparent;color:var(--ec-mut,#75aab9);border-radius:8px;cursor:pointer;font-size:12px}
+.ec-seg button.on{border-color:var(--ec-own,#b78cff);color:var(--ec-own,#b78cff);background:rgba(183,140,255,.08)}
+.ec-up{font-size:12px;color:var(--ec-mut,#75aab9);margin-top:6px}
+.ec-act{display:flex;gap:10px;margin-top:18px}
+.ec-btn{flex:1;text-align:center;border-radius:8px;padding:10px;font-size:13px;cursor:pointer;border:1px solid var(--ec-line,rgba(120,243,255,.18));background:transparent;color:var(--ec-ink,#dff8ff);font-family:inherit}
+.ec-btn.ghost{color:var(--ec-mut,#75aab9)}
+.ec-btn.go{font-weight:700}
+.ec-btn.sell{background:var(--ec-accent,#ffd866);color:#1a1300;border-color:var(--ec-accent,#ffd866)}
+.ec-btn.own{background:var(--ec-own,#b78cff);color:#1a0033;border-color:var(--ec-own,#b78cff)}
+.ec-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ec-card2,#0d1c28);border:1px solid var(--ec-line,rgba(120,243,255,.18));color:var(--ec-ink,#dff8ff);border-radius:10px;padding:12px 20px;font-size:13px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:100001;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+.ec-toast.show{opacity:1;transform:translateX(-50%) translateY(0)} .ec-toast.err{border-color:var(--ec-danger,#ff4f5e);color:var(--ec-warn,#ff8866)}
+
+@media(max-width:760px){.ec-kpis,.ec-kpis.ec-pub{grid-template-columns:repeat(2,1fr)}}
