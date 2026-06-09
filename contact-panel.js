@@ -18,9 +18,11 @@
   if (window.__admiraContactPanelLoaded) return;
   window.__admiraContactPanelLoaded = true;
 
-  var lang = (document.documentElement.lang || 'en').toLowerCase().slice(0, 2);
-  var es = lang === 'es';
-  function t(en, esText) { return es ? esText : en; }
+  function currentLang() {
+    return (document.documentElement.lang || 'en').toLowerCase().slice(0, 2);
+  }
+  function isSpanish() { return currentLang() === 'es'; }
+  function t(en, esText) { return isSpanish() ? esText : en; }
 
   function init() {
     if (document.getElementById('admiraContactPanel')) return;
@@ -36,42 +38,55 @@
     panel.setAttribute('aria-labelledby', 'admiraContactPanelTitle');
 
     panel.innerHTML =
-      '<button class="admira-contact-close" type="button" data-admira-contact-close aria-label="' + t('Close contact panel', 'Cerrar panel de contacto') + '">×</button>' +
-      '<h2 id="admiraContactPanelTitle">' + t('Contact us', 'Contáctanos') + '</h2>' +
+      '<button class="admira-contact-close" type="button" data-admira-contact-close data-i18n-aria-en="Close contact panel" data-i18n-aria-es="Cerrar panel de contacto">×</button>' +
+      '<h2 id="admiraContactPanelTitle" data-i18n-en="Contact us" data-i18n-es="Contáctanos"></h2>' +
       '<div class="admira-contact-panel-grid">' +
-        '<div>' + t('Contact details', 'Datos de contacto') + '</div>' +
+        '<div data-i18n-en="Contact details" data-i18n-es="Datos de contacto"></div>' +
         '<div>' +
           '<span><a href="tel:+34930000000">+34 930 000 000</a></span>' +
           '<span><a href="mailto:info@admira.com">info@admira.com</a></span>' +
         '</div>' +
-        '<div>' + t('We call you', 'Te llamamos') + '</div>' +
+        '<div data-i18n-en="We call you" data-i18n-es="Te llamamos"></div>' +
         '<form class="admira-contact-form" id="admiraContactForm" novalidate>' +
           '<label>' +
-            '<span>' + t('Name', 'Nombre') + '</span>' +
+            '<span data-i18n-en="Name" data-i18n-es="Nombre"></span>' +
             '<input type="text" name="name" autocomplete="name" required>' +
           '</label>' +
           '<label>' +
-            '<span>' + t('Phone', 'Teléfono') + '</span>' +
+            '<span data-i18n-en="Phone" data-i18n-es="Teléfono"></span>' +
             '<input type="tel" name="phone" autocomplete="tel" required>' +
           '</label>' +
           '<label>' +
-            '<span>' + t('Reason', 'Motivo') + '</span>' +
+            '<span data-i18n-en="Reason" data-i18n-es="Motivo"></span>' +
             '<textarea name="reason" rows="3" required></textarea>' +
           '</label>' +
           '<div class="admira-contact-actions">' +
-            '<button type="submit">' + t('Send request', 'Enviar solicitud') + '</button>' +
-            '<a href="https://calendar.google.com/calendar/u/0/r/eventedit?text=Videoconferencia%20Admira&details=Quiero%20agendar%20una%20videoconferencia%20con%20Admira.&add=info%40admira.com" target="_blank" rel="noopener noreferrer">' + t('Book a video conference', 'Agendar videoconferencia') + '</a>' +
+            '<button type="submit" data-i18n-en="Send request" data-i18n-es="Enviar solicitud"></button>' +
+            '<a href="https://calendar.google.com/calendar/u/0/r/eventedit?text=Videoconferencia%20Admira&details=Quiero%20agendar%20una%20videoconferencia%20con%20Admira.&add=info%40admira.com" target="_blank" rel="noopener noreferrer" data-i18n-en="Book a video conference" data-i18n-es="Agendar videoconferencia"></a>' +
           '</div>' +
           '<p class="admira-contact-status" role="status" aria-live="polite"></p>' +
         '</form>' +
-        '<div>' + t('Office', 'Oficina') + '</div>' +
-        '<div>' + t('Barcelona, Spain', 'Barcelona, España') + '</div>' +
+        '<div data-i18n-en="Office" data-i18n-es="Oficina"></div>' +
+        '<div data-i18n-en="Barcelona, Spain" data-i18n-es="Barcelona, España"></div>' +
         '<div>Social</div>' +
         '<div><a href="https://www.linkedin.com/company/admira-next/" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>' +
       '</div>';
 
     document.body.appendChild(backdrop);
     document.body.appendChild(panel);
+    translatePanel();
+
+    function translatePanel() {
+      var langKey = isSpanish() ? 'es' : 'en';
+      panel.querySelectorAll('[data-i18n-en][data-i18n-es]').forEach(function (el) {
+        el.textContent = el.getAttribute('data-i18n-' + langKey) || '';
+      });
+      panel.querySelectorAll('[data-i18n-aria-en][data-i18n-aria-es]').forEach(function (el) {
+        el.setAttribute('aria-label', el.getAttribute('data-i18n-aria-' + langKey) || '');
+      });
+    }
+
+    window.addEventListener('admira:languagechange', translatePanel);
 
     function togglePanel(open) {
       document.body.classList.toggle('admira-contact-open', open);
