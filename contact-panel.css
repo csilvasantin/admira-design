@@ -16,6 +16,8 @@
   pointer-events: none;
   transition: opacity 0.34s ease, visibility 0.34s ease;
 }
+.admira-contact-panel,
+.admira-contact-panel * { box-sizing: border-box; }
 .admira-contact-panel {
   position: fixed;
   z-index: 1010;
@@ -24,6 +26,11 @@
   bottom: 20px;
   width: min(40vw, 500px);
   min-width: 380px;
+  max-width: 100%;
+  overflow-x: hidden;
+  /* Scrollbar al tema (no el pegote blanco por defecto) */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(120,243,255,.32) transparent;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   background: linear-gradient(180deg, rgba(6, 14, 29, 0.98), rgba(27, 32, 48, 0.96));
@@ -254,3 +261,16 @@ body.admira-contact-open .admira-contact-panel {
     grid-template-columns: 1fr;
   }
 }
+
+/* Scrollbar del panel al tema oscuro (Chrome/Safari) */
+.admira-contact-panel::-webkit-scrollbar { width: 10px; }
+.admira-contact-panel::-webkit-scrollbar-track { background: transparent; }
+.admira-contact-panel::-webkit-scrollbar-thumb {
+  background: rgba(120, 243, 255, 0.28);
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+.admira-contact-panel::-webkit-scrollbar-thumb:hover { background: rgba(120, 243, 255, 0.5); background-clip: padding-box; }
+.admira-contact-panel textarea::-webkit-scrollbar { width: 8px; }
+.admira-contact-panel textarea::-webkit-scrollbar-thumb { background: rgba(120,243,255,.28); border-radius: 6px; }
