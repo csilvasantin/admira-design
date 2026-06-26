@@ -69,6 +69,7 @@ entrada del marketplace; el dueño filtra con política + lista negra).
 | POST | `/grid/emit` | Empuja el creativo de ahora a `/signage/now` de cada pixerScreen. |
 | POST | `/grid/upload?circuit=&ext=&key=` | Sube creativo propio a R2 → URL servida por `/signage/media/`. |
 | GET  | `/grid/screens` | Resumen de todas las pantallas configuradas. |
+| GET/POST | `/grid/projects` | **Canales/proyectos** que agrupan circuitos (`[{id,name,circuits[]}]`). GET público (defaults si vacío); POST con `key`. Lo usa `admira.tv/cms.html` para filtrar flota+programación por canal. |
 
 ### `GET /grid/day` → forma de respuesta
 ```jsonc
