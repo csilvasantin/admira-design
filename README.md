@@ -75,6 +75,7 @@ Ver `meta.html` para el markup completo.
 
 `v0.1.0` — primer release (tokens, nav, group).
 `v0.2.0` — **capa meta** (`meta.css`): metaestilo del ecosistema con el twin de XpaceOS al centro. **Aditivo** — no altera el comportamiento de los sitios que solo importan v0.1.0; para usar el metaestilo, importa `meta.css` y añade `data-layer` al `<body>`.
+`v0.2.1` — **dominios propios** (v.04.09.2026.r1.22:32): `emission-calendar.js` y `contact-panel.js` llaman al worker por `api.admira.store` en vez de `pixer-eleven.csilvasantin.workers.dev` (LaLiga bloquea workers.dev en horas de fútbol, FLT-1633). Sin cambios de API.
 
 ## Licencia
 

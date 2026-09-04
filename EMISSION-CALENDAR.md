@@ -26,7 +26,7 @@ host (p.ej. la cream/orange de pixeria) sea distinta. Montaje:
 
 ```js
 const cal = EmissionCalendar.mount(containerEl, {
-  workerBase: 'https://pixer-eleven.csilvasantin.workers.dev',
+  workerBase: 'https://api.admira.store',
   screen:   'xtanco-led-frontal',   // id lógico de pantalla
   date:     '2026-06-07',           // YYYY-MM-DD (Europe/Madrid)
   role:     'public',               // 'public' | 'sell' | 'owner'
@@ -53,7 +53,7 @@ El catálogo de tiendas/superficies está en `admira.app/locations.js`
 
 ## 2. API `/grid` (worker `pixer-eleven`)
 
-Base: `https://pixer-eleven.csilvasantin.workers.dev`. CORS abierto a las tres webs + localhost.
+Base: `https://api.admira.store`. CORS abierto a las tres webs + localhost.
 Escrituras requieren `key` (secret `GRID_KEY`) en el body, salvo `/grid/offer` (abierto: es la
 entrada del marketplace; el dueño filtra con política + lista negra).
 

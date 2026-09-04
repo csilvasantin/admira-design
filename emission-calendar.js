@@ -7,7 +7,7 @@
      <script src=".../admira-design/emission-calendar.js"></script>
    Uso:
      const cal = EmissionCalendar.mount(containerEl, {
-       workerBase:'https://pixer-eleven.csilvasantin.workers.dev',
+       workerBase:'https://api.admira.store',
        screen:'xtanco-led-frontal', date:'2026-06-07',
        role:'public'|'sell'|'owner',
        circuit:'xtanco',                 // para subida (owner)
@@ -22,7 +22,8 @@
 (function (global) {
   'use strict';
 
-  var WORKER_DEFAULT = 'https://pixer-eleven.csilvasantin.workers.dev';
+  // dominio propio: LaLiga bloquea workers.dev en horas de fútbol, FLT-1633
+  var WORKER_DEFAULT = 'https://api.admira.store';
   var fmtEur = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
 
   function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }

@@ -23,7 +23,8 @@
   if (window.__admiraContactPanelLoaded) return;
   window.__admiraContactPanelLoaded = true;
 
-  var LEAD_ENDPOINT = 'https://pixer-eleven.csilvasantin.workers.dev/lead';
+  // dominio propio: LaLiga bloquea workers.dev en horas de fútbol, FLT-1633
+  var LEAD_ENDPOINT = 'https://api.admira.store/lead';
   var QKEY = 'admira_lead_queue';
 
   function currentLang() {
