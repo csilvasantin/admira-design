@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="es" data-mode="expert"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Paraguas global · Preview aislada</title>
+<link rel="stylesheet" href="tokens.css"><style>
+body{margin:0;padding:26px;background:#10141c;color:#e8eef7;font:16px system-ui}main{max-width:1250px;margin:auto}h1{margin:12px 0}.warning{padding:14px;background:#332807;border:1px solid #ad8333;border-radius:10px}a{color:#70cff4}button,input,select{font:inherit;padding:9px;border-radius:7px;border:1px solid #465168;background:#192333;color:#fff}form{display:flex;gap:10px;margin:22px 0;flex-wrap:wrap}section{background:#19202d;padding:18px;border-radius:10px;margin:15px 0}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#0e141e;padding:15px;line-height:1.4}#status{min-height:26px;color:#a8dbb2}.url{font:13px ui-monospace;overflow-wrap:anywhere}nav{display:flex;flex-wrap:wrap;gap:18px;margin:18px 0}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:850px){.grid{grid-template-columns:1fr}}label{align-self:center}#cli{min-width:330px;flex:1}#role{margin:12px 0}.muted{color:#b3bdcc;font-size:14px}
+</style></head><body><main>
+<div class="warning">PREVIEW AISLADA · Encargo #5934 · API y código común. Sesiones sintéticas y 4 pantallas de prueba; ninguna conexión al inventario de producción. El rol se consulta en la whitelist real. / Isolated preview: synthetic sessions, fixture data, real whitelist roles.</div>
+<h1>Una marca. Un proyecto. Cinco plataformas.</h1>
+<p>La marca cambia la apariencia. El proyecto limita los resultados y exige permiso del servidor. / Brand changes appearance; project filters results and requires server permission.</p>
+<p class="url">URL de esta preview: <span id="page-url"></span></p>
+<label>Sesión de prueba / Test session <select id="role"><option value="superuser">Superusuario · email de fixture Carlos</option><option value="reader">Usuario normal · reader@preview.invalid</option></select></label>
+<p class="muted">El fixture de superusuario usa el email de Carlos para consultar su rol actual; su token está firmado con una clave exclusiva de esta sandbox. No es una sesión humana de Carlos.</p>
+<form id="command"><label for="cli">Experto / Expert</label><input id="cli" value="/proyecto starbucks" autocomplete="off" aria-label="Comando"><button>Ejecutar / Run</button><button type="button" id="refresh">Actualizar / Refresh</button></form>
+<p id="status" role="status">Preparando sesión…</p>
+<nav aria-label="Plataformas"><a href="https://www.admira.studio/">Studio</a><a href="https://www.admira.store/">Store</a><a href="https://www.admira.tv/parrilla">TV</a><a href="https://www.admira.app/">App</a><a href="https://www.admira.biz/">Biz</a><a href="help/index.html">Ayuda ES / EN</a></nav>
+<div class="grid"><section><h2>Contexto de sesión / Session context</h2><p class="url"><a id="ctx-url"></a></p><pre id="ctx-result">…</pre></section><section><h2>Pantallas del proyecto / Project screens</h2><p class="url"><a id="screens-url"></a></p><pre id="screens-result">…</pre></section></div>
+<section><h2>Comprobación de permisos / Permission check</h2><p class="url" id="reject-url"></p><pre id="reject-result">…</pre></section>
+</main>
+<script src="preview.js"></script><script src="contexto.js"></script><script src="marca-blanca.js" data-plataforma="studio"></script>
+</body></html>

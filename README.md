@@ -80,3 +80,9 @@ Ver `meta.html` para el markup completo.
 ## Licencia
 
 Privado · Admira Digital Networks · Carlos Silva · csilva@admira.com
+
+## Contexto común / Shared context (draft preview · encargo #5934 · API y código común)
+
+`contexto.js` y un solo `marca-blanca.js` + CSS compartido: `/marca` es presentación; `/proyecto` filtra sólo con superusuario verificado por API. Leen URL, restauran `/ctx` por sesión y propagan parámetros entre studio/store/tv/app/biz. No usan `pixeria:admin` como permiso. Se conserva el cargador, catálogo, analizador, contraste y preferencias de marca existentes. [Contrato e integración ES/EN](docs/contexto.md), [ayuda y tutorial](help/index.html), [CLI](help/cli/index.html), [catálogo MCP](mcp/context-contract.json), [preview aislada](preview.html). Pruebas: `node --test test/contexto.test.cjs`.
+
+URL and server context synchronize by authenticated session; visual brand and authorized project remain separate. Cross-platform links preserve their routes and other parameters. These draft modules require integration in the five host platforms; no production release is claimed.
