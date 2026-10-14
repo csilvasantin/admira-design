@@ -32,7 +32,23 @@ window.ADMIRA_CONTEXT_OPTIONS = {
 <script src="/shared/marca-blanca.js" data-plataforma="studio"></script>
 ```
 
-`data-plataforma`: studio/store/tv/app/biz. Distribuir también `marca-blanca.css` junto al loader. Este loader común deriva de Studio y usa el catálogo, contraste, logo, favicon, modo y analizador existentes de admiranext.com. El CSS de puente sólo actúa bajo `data-mb-marca` y conserva los selectores del shell entregado.
+`data-plataforma`: la web que carga el módulo (studio/store/tv/app/biz). Distribuir junto al loader **todas** las hojas `marca-blanca*.css` de la misma revisión. Este loader común deriva de Studio y usa el catálogo, contraste, logo, favicon, modo y analizador existentes de admiranext.com.
+
+### Una marca, cinco chromes (encargo #5979)
+
+Cada web tiene su entrada en `WEBS` (marca-blanca.js): la hoja puente que se carga, la variante del catálogo que se pinta y dónde van el logo del cliente y «Volver a Admira». Con marca activa el loader pone `data-mb-web="<web>"` en `<html>`, y cada hoja puente lleva todas sus reglas bajo `:root[data-mb-marca][data-mb-web="<web>"]`: las reglas de una web nunca se aplican en otra (lo comprueba `test/marca-blanca-webs.test.cjs`).
+
+| Web | Hoja puente | Variante del catálogo | Logo delante de |
+|---|---|---|---|
+| studio | `marca-blanca.css` | studio | `.pf-topbar .pf-topbar-brand` |
+| store | `marca-blanca-store.css` | store | `#topBar .xs-brand` (o tras `#pfOptions`) |
+| tv | `marca-blanca-tv.css` | store | `.yk-head`/`.yk-bar` (home) o `header.admtop .admbrand` |
+| app | `marca-blanca-app.css` | yokup | `#yk-frame .yk-bar .yk-logo` |
+| biz | `marca-blanca-biz.css` | app | `header .logo .logo-home` |
+
+La variante del catálogo es la que cada web usaba antes del loader común, para que nada cambie de aspecto al integrarlo. Una página con un chrome distinto ajusta las anclas sin tocar el loader: `data-ancla-logo` (selectores separados por comas), `data-ancla-tras`, `data-ancla-volver` y `data-catalogo` en el `<script>`. **Web nueva:** entrada en `WEBS` + hoja `marca-blanca-<web>.css` con todas sus reglas bajo su `data-mb-web`; el test falla si falta la hoja o si una regla se sale.
+
+The loader dresses each platform's own chrome: per-platform bridge sheet scoped by `data-mb-web`, the catalogue variant each platform already used, and per-platform anchors for the client logo and the back button, overridable from the script tag.
 
 ```js
 await AdmiraContexto.ready;
